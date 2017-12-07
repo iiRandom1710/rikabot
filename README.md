@@ -1,0 +1,2 @@
+# rikabot
+RikaBot for Discord
