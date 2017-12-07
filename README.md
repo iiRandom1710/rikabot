@@ -1,5 +1,7 @@
 # RikaBot
 
+[![npm](https://img.shields.io/npm/v/npm.svg)]()
+
 RikaBot was made out of boredom and desperation by a Discord user with no life.
 
 Currently, RikaBot's capability is posting the same picture of Rika every hour.
