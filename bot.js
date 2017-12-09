@@ -1,13 +1,7 @@
 var Discord = require('discord.io');
-var logger = require('winston');
 var auth = require('./auth.json');
 var temp = 1;									// sets a switch for triggering command
-logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-    colorize: true
-});
-
-logger.level = 'debug';
+var d = new Date();
 
 var bot = new Discord.Client ({
     token: auth.token,
@@ -15,12 +9,12 @@ var bot = new Discord.Client ({
 });
 
 bot.on('ready', function(evt) {
-    logger.info('Connected');
-    logger.info('Logged in as: ');
-	logger.info(bot.username + ' - (' + bot.id + ')');
+    console.log('[' + d + ']' + 'Connected');
+    console.log('[' + d + ']' + 'Logged in as: ');
+	console.log('[' + d + ']' + bot.username + ' - (' + bot.id + ')');
 	
 	bot.setPresence({
-	  game: {name: "with Aoko"}
+        game: {name: "with Aoko"}
 	});
 	
 	
@@ -70,7 +64,6 @@ bot.on('message', function(user, userID, channelID, message, evt) {
 });
 
 bot.on("disconnect", function() {
-	logger.info('Bot disconnected');
+    console.log('[' + d + ']' + 'Bot disconnected');
 	bot.connect() //Auto reconnect
-	logger.info('Reconnected');
 });
