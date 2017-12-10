@@ -1,6 +1,7 @@
 var Discord = require('discord.io');
 var auth = require('./auth.json');
 var temp = 1;									// sets a switch for triggering command
+var temp2 = 1;
 var d = new Date();
 
 var bot = new Discord.Client ({
@@ -16,8 +17,6 @@ bot.on('ready', function(evt) {
 	bot.setPresence({
         game: {name: "with Aoko"}
 	});
-	
-	
 });
 
 bot.on('message', function(user, userID, channelID, message, evt) {
@@ -25,11 +24,11 @@ bot.on('message', function(user, userID, channelID, message, evt) {
 	//catch messages starting with the wildcard
 	if(message.substring(0, 1) == '%') {
 		var arg = message.substring(1).split(' ');		
-		var command = arg[0];							// gets the first word in the command
+		var command = arg[0];						// gets the first word in the command
 		
 		
-		arg = arg.splice(1);							// gets rid of the other words and returns the one needed
-														// currently not used - might use it in the future for response messages
+		arg = arg.splice(1);	// gets rid of the other words and returns the one needed
+								// currently not used - might use it in the future for response messages
 		
 		switch(command)
 		{
@@ -51,6 +50,25 @@ bot.on('message', function(user, userID, channelID, message, evt) {
 				temp = 0;
 			}
 			break;
+			case 'neru':
+			{
+				if(temp2 == 1) {
+					bot.sendMessage({
+						to: channelID,
+						message: "https://pbs.twimg.com/media/DQpe7WfU8AAgPlG.jpg:orig"
+					});
+					
+					var interval = setInterval (function (){
+						bot.sendMessage({
+							to: channelID,
+							message: "https://pbs.twimg.com/media/DQpe7WfU8AAgPlG.jpg:orig"
+						});
+					}, 3600000);
+				}
+				
+				temp2 = 0;
+			}
+			break;
 			default:
 			{
 				bot.sendMessage({
@@ -65,5 +83,5 @@ bot.on('message', function(user, userID, channelID, message, evt) {
 
 bot.on("disconnect", function() {
     console.log('[' + d + ']' + 'Bot disconnected');
-	bot.connect() //Auto reconnect
+	bot.connect(); //Auto reconnect
 });
