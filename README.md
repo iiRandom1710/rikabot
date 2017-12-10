@@ -8,4 +8,6 @@ Currently, RikaBot's sole capability is posting the same picture of Rika every h
 
 This is initialised via entering the ``%berika`` command.
 
+Scratch that, RikaBot can now post the same picture of Neru every hour as well. The ``%neru`` command is used to initialise this, though that was probably obvious to you anyways.
+
 RikaBot relies on [discord.io](https://github.com/izy521/discord.io) to run.
