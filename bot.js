@@ -2,7 +2,6 @@ var Discord = require('discord.io');
 var auth = require('./auth.json');
 var temp = 1;									// sets a switch for triggering command
 var temp2 = 1;
-var d = new Date();
 
 var bot = new Discord.Client ({
     token: auth.token,
@@ -10,9 +9,9 @@ var bot = new Discord.Client ({
 });
 
 bot.on('ready', function(evt) {
-    console.log('[' + d + ']' + 'Connected');
-    console.log('[' + d + ']' + 'Logged in as: ');
-	console.log('[' + d + ']' + bot.username + ' - (' + bot.id + ')');
+    console.log('[' + Date() + ']' + 'Connected');
+    console.log('[' + Date() + ']' + 'Logged in as: ');
+	console.log('[' + Date() + ']' + bot.username + ' - (' + bot.id + ')');
 	
 	bot.setPresence({
         game: {name: "with Aoko"}
@@ -34,7 +33,7 @@ bot.on('message', function(user, userID, channelID, message, evt) {
 		{
 			case 'berika':
 			{
-				if(temp==1) {
+				if(temp == 1) {
 					bot.sendMessage({
 						to: channelID,
 						message: "https://cdn.discordapp.com/attachments/346822170732920834/387823602273353748/DQU8a8RVQAEg0W4.png" // message to send
@@ -82,6 +81,6 @@ bot.on('message', function(user, userID, channelID, message, evt) {
 });
 
 bot.on("disconnect", function() {
-    console.log('[' + d + ']' + 'Bot disconnected');
+    console.log('[' + Date() + ']' + 'Bot disconnected');
 	bot.connect(); //Auto reconnect
 });
